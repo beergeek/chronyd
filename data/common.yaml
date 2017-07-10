@@ -1,6 +1,6 @@
 
 
-chronyd::template_hash: ~
+chronyd::template_hash: null
 chronyd::package_ensure: 'present'
 chronyd::template_name: 'chronyd/chrony.conf.epp'
 chronyd::config_path: '/etc/chrony.conf'
@@ -24,3 +24,4 @@ chronyd::logdir: '/var/log/chrony'
 chronyd::keyfile_path: '/etc/chrony.keys'
 chronyd::template_keyfile: 'chronyd/keyfile.epp'
 chronyd::replace_keyfile: true
+chronyd::keyfile_hash: {}

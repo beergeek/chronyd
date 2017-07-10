@@ -32,7 +32,7 @@ keyfile <%= $keyfile %>
 noclientlog
 <% } -%>
 
-# Send a message to syslog if a clock adjustment is larger than 0.5 seconds.
+# Send a message to syslog if a clock adjustment is larger than <%= $logchange_value %> seconds.
 logchange <%= $logchange_value %>
 
 logdir <%= $logdir %>

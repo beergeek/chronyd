@@ -48,34 +48,34 @@
 # @param $servers
 class chronyd (
   # REQUIRED
-  Array[String] $servers,
-  Hash[String, String] $keyfile_hash,
+  Array[String]               $servers,
 
   # From Hiera in-module-data
-  String $package_name,
-  String $config_path,
-  String $template_name,
-  String $service_name,
-  Enum['absent','present'] $package_ensure,
+  Hash[String, String]        $keyfile_hash,
+  String                      $package_name,
+  String                      $config_path,
+  String                      $template_name,
+  String                      $service_name,
+  Enum['absent','present']    $package_ensure,
   Optional[Hash[String, Any]] $template_hash,
-  Enum['running','stopped'] $service_ensure,
-  Boolean $service_enable,
-  Boolean $iburst,
-  String $stratumweight,
-  String $drift_file,
-  Boolean $rtcsync,
-  Boolean $makestep,
-  Integer $step_limit,
-  Integer $step_number,
-  String $ipv4_bindaddress,
-  String $ipv6_bindaddress,
-  String $keyfile,
-  Boolean $noclientlog,
-  Variant[Integer,Float] $logchange_value,
-  String $logdir,
-  String $template_keyfile,
-  String $keyfile_path,
-  Boolean $replace_keyfile,
+  Enum['running','stopped']   $service_ensure,
+  Boolean                     $service_enable,
+  Boolean                     $iburst,
+  String                      $stratumweight,
+  String                      $drift_file,
+  Boolean                     $rtcsync,
+  Boolean                     $makestep,
+  Integer                     $step_limit,
+  Integer                     $step_number,
+  String                      $ipv4_bindaddress,
+  String                      $ipv6_bindaddress,
+  String                      $keyfile,
+  Boolean                     $noclientlog,
+  Variant[Integer,Float]      $logchange_value,
+  String                      $logdir,
+  String                      $template_keyfile,
+  String                      $keyfile_path,
+  Boolean                     $replace_keyfile,
 ) {
 
   if $facts['os']['family'] != 'RedHat' and $facts['os']['release']['major'] != '7' {
@@ -119,7 +119,7 @@ class chronyd (
   }
 
   file { 'chrony_keyfile':
-    ensure  => file,
+    ensure  => 'file',
     path    => $keyfile_path,
     replace => $replace_keyfile,
     owner   => 'root',
