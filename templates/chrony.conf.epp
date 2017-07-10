@@ -1,0 +1,38 @@
+# Use public servers from the pool.ntp.org project.
+# Please consider joining the pool (http://www.pool.ntp.org/join.html).
+<% $servers.each |String $server_name| { -%>
+server <%= $server_name %> <% if $iburst { %>iburst<% } %>
+<% } -%>
+
+# Ignore stratum in source selection.
+stratumweight <%= $stratumweight %>
+
+# Record the rate at which the system clock gains/losses time.
+driftfile <%= $drift_file %>
+
+<% if $rtcsync { -%>
+# Enable kernel RTC synchronization.
+rtcsync
+<% } -%>
+
+<% if $makestep { -%>
+# In first three updates step the system clock instead of slew
+# if the adjustment is larger than 10 seconds.
+makestep <%= $step_limit %> <%= $step_number %>
+<% } -%>
+
+# Listen for commands only on localhost.
+bindcmdaddress <%= $ipv4_bindaddress %>
+bindcmdaddress <%= $ipv6_bindaddress %>
+
+keyfile <%= $keyfile %>
+
+<% if $noclientlog { -%>
+# Disable logging of client accesses.
+noclientlog
+<% } -%>
+
+# Send a message to syslog if a clock adjustment is larger than 0.5 seconds.
+logchange <%= $logchange_value %>
+
+logdir <%= $logdir %>

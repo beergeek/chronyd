@@ -1,0 +1,15 @@
+{
+  "name": "beergeek-chronyd",
+  "version": "0.1.0",
+  "author": "beergeek",
+  "summary": "A module to manage Chronyd on RHEL7",
+  "license": "Apache-2.0",
+  "source": "https://github.com/beergeek/chronyd.git",
+  "project_page": "https://github.com/beergeek/chronyd",
+  "issues_url": "https://github.com/beergeek/chronyd/issues",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ],
+  "data_provider": null
+}
+

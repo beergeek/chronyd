@@ -1,0 +1,5 @@
+---
+
+chronyd::package_name: 'chrony'
+chronyd::config_path: '/etc/chrony.conf'
+chronyd::service_name: 'chronyd'

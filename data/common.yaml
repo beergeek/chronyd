@@ -1,0 +1,26 @@
+
+
+chronyd::template_hash: ~
+chronyd::package_ensure: 'present'
+chronyd::template_name: 'chronyd/chrony.conf.epp'
+chronyd::config_path: '/etc/chrony.conf'
+chronyd::package_name: 'chrony'
+chronyd::service_name: 'chronyd'
+chronyd::service_ensure: 'running'
+chronyd::service_enable: true
+chronyd::iburst: true
+chronyd::stratumweight: '0'
+chronyd::drift_file: '/var/lib/chrony/drift'
+chronyd::rtcsync: true
+chronyd::makestep: true
+chronyd::step_limit: 10
+chronyd::step_number: 3
+chronyd::ipv4_bindaddress: '127.0.0.1'
+chronyd::ipv6_bindaddress: '::1'
+chronyd::keyfile: '/etc/chrony.keys'
+chronyd::noclientlog: false
+chronyd::logchange_value: 1
+chronyd::logdir: '/var/log/chrony'
+chronyd::keyfile_path: '/etc/chrony.keys'
+chronyd::template_keyfile: 'chronyd/keyfile.epp'
+chronyd::replace_keyfile: true

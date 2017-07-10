@@ -1,0 +1,3 @@
+<% $keyfile_hash.each |String $key_id, String $key_data| { -%>
+<%= $key_id %> <%= $key_data %>
+<% } -%>
