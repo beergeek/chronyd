@@ -3,81 +3,86 @@
 #### Table of Contents
 
 1. [Description](#description)
-1. [Setup - The basics of getting started with chronyd](#setup)
-    * [What chronyd affects](#what-chronyd-affects)
-    * [Setup requirements](#setup-requirements)
+1. [Setup](#setup)
     * [Beginning with chronyd](#beginning-with-chronyd)
-1. [Usage - Configuration options and additional functionality](#usage)
-1. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
-1. [Limitations - OS compatibility, etc.](#limitations)
-1. [Development - Guide for contributing to the module](#development)
+1. [Usage](#usage)
+1. [Reference](#reference)
+1. [Limitations](#limitations)
 
 ## Description
 
-Start with a one- or two-sentence summary of what the module does and/or what
-problem it solves. This is your 30-second elevator pitch for your module.
-Consider including OS/Puppet version it works with.
+Configures the chrony daemon in RHEL 7.
 
-You can give more descriptive information in a second paragraph. This paragraph
-should answer the questions: "What does this module *do*?" and "Why would I use
-it?" If your module has a range of functionality (installation, configuration,
-management, etc.), this is the time to mention it.
+This module installs and configures the chrony package, service, and configuration files.
 
 ## Setup
 
-### What chronyd affects **OPTIONAL**
-
-If it's obvious what your module touches, you can skip this section. For
-example, folks can probably figure out that your mysql_instance module affects
-their MySQL instances.
-
-If there's more that they should know about, though, this is the place to mention:
-
-* A list of files, packages, services, or operations that the module will alter,
-  impact, or execute.
-* Dependencies that your module automatically installs.
-* Warnings or other important notices.
-
-### Setup Requirements **OPTIONAL**
-
-If your module requires anything extra before setting up (pluginsync enabled,
-etc.), mention it here.
-
-If your most recent release breaks compatibility or requires particular steps
-for upgrading, you might want to include an additional "Upgrading" section
-here.
-
 ### Beginning with chronyd
 
-The very basic steps needed for a user to get the module up and running. This
-can include setup steps, if necessary, or it can be an example of the most
-basic use of the module.
+To set up chrony with default values:
 
-## Usage
-
-This section is where you describe how to customize, configure, and do the
-fancy stuff with your module here. It's especially helpful if you include usage
-examples and code samples for doing things with your module.
+```puppet
+class { '::chronyd':
+  servers => ['0.au.pool.ntp.org','1.au.pool.ntp.org'],
+}
+```
 
 ## Reference
 
-Here, include a complete list of your module's classes, types, providers,
-facts, along with the parameters for each. Users refer to this section (thus
-the name "Reference") to find specific details; most users don't read it per
-se.
+**Parameters:**
+
+`servers`: The list of NTP servers to connect to
+
+`keyfile_hash`: A hash of keys to install in the format `{ key_id => key_data }`. Defaults to an empty hash
+
+`package_name`: Name of the package to install, defaults to `chrony`
+
+`config_path`: Path to the config file, defaults to `/etc/chrony.conf`
+
+`template_name`: Template to use, modify this if the default template does not have enough flexibility. Defaults to `chronyd/chrony.conf.epp`
+
+`service_name`: The service to manage, defaults to `chronyd`
+
+`package_ensure`: Defaults to `present`
+
+`template_hash`: Hash of local variables to pass to the template, only useful combination with `template_name`
+
+`service_ensure`: Defaults to `running`
+
+`service_enable`: Defaults to `true`
+
+`iburst`: Whether to use iburst, defaults to `true`
+
+`stratumweight`: Does [this](http://chrony.tuxfamily.org/manual.html#stratumweight-directive), defaults to `0`
+
+`drift_file`: Defaults to `/var/lib/chrony/drift`
+
+`rtcsync`: Defaults to `true`
+
+`makestep`: Defaults to `true`
+
+`step_limit`: Defaults to `10`
+
+`step_number`: Defaults to `3`
+
+`ipv4_bindaddress`: Defaults to `'127.0.0.1'`
+
+`ipv6_bindaddress`: Defaults to `'::1'`
+
+`keyfile`: Defaults to `'/etc/chrony.keys'`
+
+`noclientlog`: Defaults to `false`
+
+`logchange_value`: Defaults to `1`
+
+`logdir`: Defaults to `'/var/log/chrony'`
+
+`template_keyfile`: Defaults to `chronyd/keyfile.epp`
+
+`keyfile_path`: Defaults to `/etc/chrony.keys`
+
+`replace_keyfile`: Defaults to `true`
 
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc. If there
-are Known Issues, you might want to include them under their own heading here.
-
-## Development
-
-Since your module is awesome, other users will want to play with it. Let them
-know what the ground rules for contributing are.
-
-## Release Notes/Contributors/Etc. **Optional**
-
-If you aren't using changelog, put your release notes here (though you should
-consider using changelog). You can also add any additional sections you feel
-are necessary or important to include here. Please use the `## ` header.
+This is only tested on RHEL 7
