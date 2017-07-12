@@ -6,23 +6,32 @@
 # Parameters
 # ----------
 #
-# Document parameters here.
+# @param servers [Array[String]] An array of the IP addresses or hostnames of NTP peers. No default.
 #
-# * `sample parameter`
-# Explanation of what this parameter affects and what it defaults to.
-# e.g. "Specify one or more upstream ntp servers as an array."
-#
-# Variables
-# ----------
-#
-# Here you should define a list of variables that this module would require.
-#
-# * `sample variable`
-#  Explanation of how this variable affects the function of this class and if
-#  it has a default. e.g. "The parameter enc_ntp_servers must be set by the
-#  External Node Classifier as a comma separated list of hostnames." (Note,
-#  global variables should be avoided in favor of class parameters as
-#  of Puppet 2.6.)
+# @param keyfile_hash [Hash[String, String]] A hash of key IDs and keys. Default value: {}
+# @param package_name [String] The name of the Chrony package. Default value: 'chrony'
+# @param config_path [String] The path and name of the Chrony config file. Default value: '/etc/chrony.conf'
+# @param template_name [String] The name of the template for chrony.conf file. Default value: 'chronyd/chrony.conf.epp'
+# @param service_name [String] The name of the Chrony service. Default value: 'chronyd'
+# @param package_ensure [Enum['absent','present']] Ensure value for package. Default value: 'present'
+# @param template_hash [Optional[Hash[String,Any]]] A hash of options for the chrony.conf. This is for a custom template only. Default value: {}
+# @param service_ensure [Enum['running','stopped']] Determine if the service is running or stopped. Default value: 'running'
+# @param service_enable [Boolean] Determine if the service is enabled or not. Default value: true
+# @param iburst [Boolean] Determine if iburst is enabled or not. Default value: true
+# @param stratumweight [Variant[Float,Integer]] The stratumweight value in seconds. Default value: 0.001
+# @param drift_file [String] Name and path of the drift file. Default value: '/var/lib/chrony/drift'
+# @param rtcsync [Boolean] Boolean to determine if RTC Sync is enabled. Default value: true
+# @param makestep [Boolean] Boolean value to determine if makestep is enabled. Default value: true
+# @param step_threshold [Variant[Integer,Float] The threshold value that will trigger a step change in time. Default value: 0.1
+# @param step_number [Integer] The number of steps to apply change over if time difference is larger than $step_threshold. Default value: 10
+# @param ipv4_bindaddress [String] IP V4 address to bind. Default value: '127.0.0.1'
+# @param ipv6_bindaddress [String] IP V6 address to bind. Default value: '::1'
+# @param keyfile [String] Name and path of the Chrony key file. Default value: '/etc/chrony.keys'
+# @param noclientlog [Boolean] Value to determine if client access is logged. Default value: true
+# @param logchange_value [Variant[Integer,Float]] Threshold value that will cause a syslog message if time difference is greater than. Default value: 0.1
+# @param logdir [String] Name and path of log directory. Default value: '/var/log/chrony'
+# @param template_keyfile [String] Name and path of the EPP template for the keyfile. Default value: 'chronyd/chrony.keys.epp'
+# @param replace_keyfile [Boolean] Determine if the keyfile is overriden if it exists. Default value: true
 #
 # Examples
 # --------
@@ -61,11 +70,11 @@ class chronyd (
   Enum['running','stopped']   $service_ensure,
   Boolean                     $service_enable,
   Boolean                     $iburst,
-  String                      $stratumweight,
+  Variant[Integer,Float]      $stratumweight,
   String                      $drift_file,
   Boolean                     $rtcsync,
   Boolean                     $makestep,
-  Integer                     $step_limit,
+  Variant[Integer,Float]      $step_threshold,
   Integer                     $step_number,
   String                      $ipv4_bindaddress,
   String                      $ipv6_bindaddress,

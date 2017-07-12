@@ -9,12 +9,12 @@ chronyd::service_name: 'chronyd'
 chronyd::service_ensure: 'running'
 chronyd::service_enable: true
 chronyd::iburst: true
-chronyd::stratumweight: '0'
+chronyd::stratumweight: 0.001
 chronyd::drift_file: '/var/lib/chrony/drift'
 chronyd::rtcsync: true
 chronyd::makestep: true
-chronyd::step_limit: 10
-chronyd::step_number: 3
+chronyd::step_threshold: 0.1
+chronyd::step_number: 10
 chronyd::ipv4_bindaddress: '127.0.0.1'
 chronyd::ipv6_bindaddress: '::1'
 chronyd::keyfile: '/etc/chrony.keys'
