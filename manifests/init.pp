@@ -30,7 +30,8 @@
 # @param noclientlog [Boolean] Value to determine if client access is logged. Default value: true
 # @param logchange_value [Variant[Integer,Float]] Threshold value that will cause a syslog message if time difference is greater than. Default value: 0.1
 # @param logdir [String] Name and path of log directory. Default value: '/var/log/chrony'
-# @param template_keyfile [String] Name and path of the EPP template for the keyfile. Default value: 'chronyd/chrony.keys.epp'
+# @param template_keyfile [String] Name and path of the EPP template for the keyfile. Default value: 'chronyd/keyfile.epp'
+# @param keyfile_path [String] Name and path of the keyfile. Default value: '/etc/chrony.keys'
 # @param replace_keyfile [Boolean] Determine if the keyfile is overriden if it exists. Default value: true
 #
 # Examples

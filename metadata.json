@@ -1,6 +1,6 @@
 {
   "name": "beergeek-chronyd",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "beergeek",
   "summary": "A module to manage Chronyd on RHEL7",
   "license": "Apache-2.0",

@@ -61,9 +61,9 @@ class { '::chronyd':
 
 `makestep`: Defaults to `true`
 
-`step_limit`: Defaults to `10`
+`step_threshold`: Defaults to `0.1`
 
-`step_number`: Defaults to `3`
+`step_number`: Defaults to `10`
 
 `ipv4_bindaddress`: Defaults to `'127.0.0.1'`
 
