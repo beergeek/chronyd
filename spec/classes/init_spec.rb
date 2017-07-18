@@ -36,6 +36,7 @@ describe 'chronyd' do
         'owner'   => 'root',
         'group'   => 'root',
         'mode'    => '0644',
+	'content' => /SHA1 HEX:1dc764e0791b11fa67efc7ecbc4b0d73f68a070c/,
         'require' => 'Package[chrony_package]',
       })
     end
