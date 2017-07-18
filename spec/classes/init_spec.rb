@@ -24,6 +24,7 @@ describe 'chronyd' do
         'owner'   => 'root',
         'group'   => 'root',
         'mode'    => '0644',
+	'content' => /server 192.168.2.2 iburst\nserver 192.168.4.4 iburst\n/,
         'require' => 'Package[chrony_package]',
       })
     end
