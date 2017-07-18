@@ -18,7 +18,7 @@ rtcsync
 <% if $makestep { -%>
 # In first three updates step the system clock instead of slew
 # if the adjustment is larger than 10 seconds.
-makestep <%= $step_limit %> <%= $step_number %>
+makestep <%= $step_threshold %> <%= $step_number %>
 <% } -%>
 
 # Listen for commands only on localhost.

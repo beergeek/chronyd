@@ -102,7 +102,7 @@ class chronyd (
       drift_file       => $drift_file,
       rtcsync          => $rtcsync,
       makestep         => $makestep,
-      step_limit       => $step_limit,
+      step_threshold   => $step_threshold,
       step_number      => $step_number,
       ipv4_bindaddress => $ipv4_bindaddress,
       ipv6_bindaddress => $ipv6_bindaddress,
